@@ -1,4 +1,3 @@
-termine proprement.
 README Projet Poste 3
 
 Objectif du projet
