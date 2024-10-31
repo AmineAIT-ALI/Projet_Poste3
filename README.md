@@ -1,3 +1,4 @@
+termine proprement.
 README Projet Poste 3
 
 Objectif du projet
@@ -26,7 +27,9 @@ Version 3 : Gestion de l'historique des données
 
 La version 3 introduit la gestion de l'historique des données météo, permettant de sauvegarder les données quotidiennement dans des fichiers spécifiques à chaque jour. Chaque exécution du script ajoute les informations dans un fichier nommé selon le format meteo_YYYYMMDD.txt (où YYYYMMDD représente la date du jour). Ce fichier d'historique conserve toutes les données collectées au cours de la journée.
 
+
 Variante 1 : Ajout d'informations météorologiques supplémentaires
+
 La variante 1 étend la version de base en ajoutant la récupération d'informations supplémentaires telles que la vitesse du vent, le taux d'humidité et la visibilité. Ces informations sont ajoutées au fichier meteo.txt. 
 
 Exemple :

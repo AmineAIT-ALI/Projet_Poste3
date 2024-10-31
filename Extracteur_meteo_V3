@@ -1,17 +1,9 @@
 #!/bin/bash
+
  
-# Définir une ville par défaut (Toulouse)
-VILLE_PAR_DEFAUT="Toulouse"
- 
-# Vérification de l'argument
-if [ -z "$1" ]; then
-  echo "Aucune ville n'a été fournie, utilisation de la ville par défaut : $VILLE_PAR_DEFAUT"
-  VILLE="$VILLE_PAR_DEFAUT"
-else
-  VILLE="$1"
-fi
- 
+
 # Définir la date et l'heure pour les journaux
+VILLE="${1:-Toulouse}"  # Définir une ville par défaut (ici Toulouse) si aucun argument n'est fourni
 DATE=$(date '+%Y-%m-%d')
 HEURE=$(date '+%H:%M')
 FICHIER_METEO="meteo_${VILLE}_${DATE}_${HEURE}.json"
