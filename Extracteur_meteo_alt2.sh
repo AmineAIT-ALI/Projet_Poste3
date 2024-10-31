@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#Suppression anciens fichiers meteo
-rm meteo_2024*.txt
-rm meteo_2024*.json
 
 # Déclaration des variables
 VILLE="${1:-Toulouse}"
