@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#Suppression anciens fichiers meteo
-rm meteo_2024*.txt
 
 # Déclaration des variables
 VILLE="${1:-Toulouse}"
@@ -9,7 +7,6 @@ DATE=$(date '+%Y-%m-%d')
 HEURE=$(date '+%H:%M')
 FICHIER_METEO="meteo_${VILLE}_${DATE}_${HEURE}.json"
 FICHIER_RESULTAT="meteo_$(date '+%Y%m%d').txt"
-FICHIER_METEO_JSON="meteo_$(date '+%Y%m%d').json"
 
 # Récupération des données météo
 if ! curl -s "wttr.in/$VILLE?format=j1" -o "$FICHIER_METEO"; then
