@@ -1,0 +1,52 @@
+#!/bin/bash
+ 
+# Définir une ville par défaut (Toulouse)
+VILLE_PAR_DEFAUT="Toulouse"
+ 
+# Vérification de l'argument
+if [ -z "$1" ]; then
+  echo "Aucune ville n'a été fournie, utilisation de la ville par défaut : $VILLE_PAR_DEFAUT"
+  VILLE="$VILLE_PAR_DEFAUT"
+else
+  VILLE="$1"
+fi
+ 
+# Définir la date et l'heure pour les journaux
+DATE=$(date '+%Y-%m-%d')
+HEURE=$(date '+%H:%M')
+FICHIER_METEO="meteo_${VILLE}_${DATE}_${HEURE}.json"
+ 
+# Définir le fichier d'historique quotidien
+FICHIER_RESULTAT="meteo_$(date '+%Y%m%d').txt"  # Crée un nouveau fichier chaque jour
+ 
+# Récupérer les données météo pour la ville spécifiée
+if ! curl -s "wttr.in/$VILLE?format=j1" -o "$FICHIER_METEO"; then
+  echo "Erreur : Impossible de se connecter à wttr.in pour la ville de $VILLE."
+  rm -f "$FICHIER_METEO"
+  exit 1
+fi
+ 
+# Vérifier si la ville es valide ou si les données sont manquantes
+if grep -q "Unknown location" "$FICHIER_METEO" || [ ! -s "$FICHIER_METEO" ]; then
+  echo "Erreur : La ville $VILLE est inconnue ou les données sont manquantes."
+  rm -f "$FICHIER_METEO"
+  exit 1
+fi
+ 
+# Extraire la température actuelle et celle de demain
+TEMPERATURE_ACTUELLE=$(jq -r '.current_condition[0].temp_C' "$FICHIER_METEO")
+TEMPERATURE_DEMAIN=$(jq -r '.weather[1].maxtempC' "$FICHIER_METEO")
+ 
+# Vérifier les données extraites
+if [ -z "$TEMPERATURE_ACTUELLE" ] || [ -z "$TEMPERATURE_DEMAIN" ]; then
+  echo "Erreur : Données météorologiques non valides pour la ville de $VILLE."
+  rm -f "$FICHIER_METEO"
+  exit 1
+fi
+ 
+# Écrir les informations météo formatées dans le fichier d'historique quotidien
+echo "$DATE - $HEURE - $VILLE : Température actuelle : ${TEMPERATURE_ACTUELLE}°C - Prévision du lendemain : ${TEMPERATURE_DEMAIN}°C" >> "$FICHIER_RESULTAT"
+echo "Les informations météo ont été enregistrées dans $FICHIER_RESULTAT."
+ 
+# Nettoyer le fichier temporaire 
+rm -f "$FICHIER_METEO"
