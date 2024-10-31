@@ -9,10 +9,23 @@ L’objectif de ce projet est de créer un outil d’extraction d’information 
 
 La version 1 
 La Version 2 permet l’automatisation périodique. Pour rendre l’application plus facile à employer, nous l’avons faites évoluer. Nous avons ajouté quelques éléments. D’abord, nous avons modifier le script pour lui permettre de fonctionner avec une ville par défaut, qui est ici Toulouse, au cas où aucun argument ne serait fourni. Nous avons aussi configuré une tâche cron pour automatiser l'exécution du script et enregistrer les données périodiquement. Et dans le README du projet, nous avons expliqué comment configurer une tâche cron.
-La Version 3 
+La version 3 introduit la gestion de l'historique des données météo, permettant de sauvegardre les données quotidiennement pour conserver un historique.
+
+Chaque exécution du script ajoute les informations météo dans un fichier texte spécifique à la journée, nommé selon le format meteo_YYYYMMDD.txt, où YYYYMMDD représente la date du jourr Ce fichier d’historique conserve toutes les données collectées au cours de la journée, avec chaque enregistrement ajouté sous la forme:
+[Date] - [Heure] - Ville : [Tempérture actuelle] - [Prévision du lendemain]
+
+Exemple :
+2024-09-24 - 14:30 - Toulouse : Température actuelle : 17°C - Prévision du lendemain : 19°C
+
+Vérification de l'historique des données
+Pour visualiser les données collectées pour une journee particulière, consultez le fichier correspondant à cette date dans le répertoire de stockage du projet, par exemple :
+cat meteo_20241030.txt
+Ces fichiers d'historique permettent une analyse facile des données météo pour des analyses statistiques ou des études de tendance
 
 La Version alternative numero 1, permet de récuperer des informations plus complètes sur la météo de la journée en cours.
 La Version Alternative Numéro 2, ajoute l'option de creation d'un fichier JSON
+La Version Alternative Numéro 3,
+
 
 Configuration d'une tâche Cron
 
