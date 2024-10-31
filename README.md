@@ -7,8 +7,9 @@ Objectif du projet
 
 L’objectif de ce projet est de créer un outil d’extraction d’information météorologique, plus précisément de créer un script Shell qui extrait périodiquement la température actuelle d'une ville donnée ainsi que les prévisions météorologiques pour le lendemain en utilisant le service wttr.in. Ce script enregistre les informations extraites dans un fichier texte, chaque enregistrement apparaissant sur une seule ligne. Ce projet comporte plusieurs variantes qui introduisent des fonctionnalités supplémentaires. Pour améliorer la synchronisation technique de notre projet, nous utilisons GIT pour garder chaque version y compris intermédiaire, et chaque intervention d’un membre du groupe.
 
+La version 1 
 La Version 2 permet l’automatisation périodique. Pour rendre l’application plus facile à employer, nous l’avons faites évoluer. Nous avons ajouté quelques éléments. D’abord, nous avons modifier le script pour lui permettre de fonctionner avec une ville par défaut, qui est ici Toulouse, au cas où aucun argument ne serait fourni. Nous avons aussi configuré une tâche cron pour automatiser l'exécution du script et enregistrer les données périodiquement. Et dans le README du projet, nous avons expliqué comment configurer une tâche cron.
-
+La Version 3 
 
 La Version alternative numero 1, permet de récuperer des informations plus complètes sur la météo de la journée en cours.
 La Version Alternative Numéro 2, ajoute l'option de creation d'un fichier JSON
